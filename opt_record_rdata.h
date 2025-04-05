@@ -88,6 +88,9 @@ class NET_EXPORT_PRIVATE OptRecordRdata : public RecordRdata {
     EdeInfoCode GetEnumFromInfoCode() const;
     // Convert a uint16_t to an EdeInfoCode enum.
     static EdeInfoCode GetEnumFromInfoCode(uint16_t info_code);
+    std::string_view GetDescriptiveErrorFromExtraText() const;
+    // Convert a structured EXTRA-TEXT field to a descriptive error.
+    std::string_view GetDescriptiveErrorFromExtraText(std::string extra_text);
    private:
     EdeOpt();
     uint16_t info_code_;

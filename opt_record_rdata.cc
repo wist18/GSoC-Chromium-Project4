@@ -137,6 +137,38 @@ OptRecordRdata::EdeOpt::EdeInfoCode OptRecordRdata::EdeOpt::GetEnumFromInfoCode(
       return EdeInfoCode::kUnrecognizedErrorCode;
   }
 }
+std::string_view GetDescriptiveErrorFromExtraText() const {
+    // TODO - display a default error message such as: 
+
+    /* 
+    ** This site can't be reached.
+    ** Check if there is a typo in <domain>.
+    ** err_code: DNS_PROBE_FINISHED_NXDOMAIN
+    */
+}
+std::string_view GetDescriptiveErrorFromExtraText(std::string extra_text) const {
+    // TODO - parse the given extra_text field.
+
+    // According to https://datatracker.ietf.org/doc/html/draft-ietf-dnsop-structured-dns-error-10
+
+    /*
+    ** "c": "contact"
+    ** "J": "justification"
+    */
+
+    // According to https://mnot.github.io/public-resolver-errors/draft-nottingham-public-resolver-errors.html#op-id
+
+    /*
+    ** "ro": "exampleResolver"
+    ** "inc": "abc123"
+    */
+
+    // Other fields like "s" (suberror), "o" (organization), or "l" (language) can be omitted.
+    // Any other fields MUST be declined to the parsing component.
+
+    // According to RFC6570[https://www.rfc-editor.org/rfc/rfc6570], 
+    // an incident resolution template needs to be created (e.g., https://resolver.example.com/filtering-incidents/{inc})
+}
 OptRecordRdata::PaddingOpt::PaddingOpt(std::string padding)
     : Opt(base::as_byte_span(padding)) {}
 OptRecordRdata::PaddingOpt::PaddingOpt(uint16_t padding_len)
